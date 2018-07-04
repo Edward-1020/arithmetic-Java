@@ -97,7 +97,7 @@ public class Array<E> {
         }
         size --;
         data[size] = null;
-        if (size == data.length / 2)
+        if (size == data.length / 4 && data.length / 2 != 0)
             resize(data.length / 2);
         return ret;
     }

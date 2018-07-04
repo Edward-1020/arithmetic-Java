@@ -25,15 +25,15 @@
       <file leaf-file-name="Array.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Array.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+            <state relative-caret-position="1623">
+              <caret line="99" column="25" lean-forward="false" selection-start-line="99" selection-start-column="25" selection-end-line="99" selection-end-column="25" />
               <folding>
                 <element signature="e#525#526#0" expanded="true" />
                 <element signature="e#553#554#0" expanded="true" />
-                <element signature="e#2327#2328#0" expanded="true" />
-                <element signature="e#2359#2360#0" expanded="true" />
-                <element signature="e#2417#2418#0" expanded="true" />
-                <element signature="e#2456#2457#0" expanded="true" />
+                <element signature="e#2351#2352#0" expanded="true" />
+                <element signature="e#2383#2384#0" expanded="true" />
+                <element signature="e#2441#2442#0" expanded="true" />
+                <element signature="e#2480#2481#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -180,12 +180,12 @@
       <option name="presentableId" value="Default" />
       <updated>1529419251265</updated>
       <workItem from="1529419258225" duration="2760000" />
-      <workItem from="1530195140417" duration="4719000" />
+      <workItem from="1530195140417" duration="5360000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7479000" />
+    <option name="totallyTimeSpent" value="8120000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="345" y="1105" width="1268" height="773" extended-state="0" />
@@ -258,10 +258,10 @@
           <folding>
             <element signature="e#525#526#0" expanded="true" />
             <element signature="e#553#554#0" expanded="true" />
-            <element signature="e#2327#2328#0" expanded="true" />
-            <element signature="e#2359#2360#0" expanded="true" />
-            <element signature="e#2417#2418#0" expanded="true" />
-            <element signature="e#2456#2457#0" expanded="true" />
+            <element signature="e#2351#2352#0" expanded="true" />
+            <element signature="e#2383#2384#0" expanded="true" />
+            <element signature="e#2441#2442#0" expanded="true" />
+            <element signature="e#2480#2481#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -287,15 +287,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Array.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+        <state relative-caret-position="1623">
+          <caret line="99" column="25" lean-forward="false" selection-start-line="99" selection-start-column="25" selection-end-line="99" selection-end-column="25" />
           <folding>
             <element signature="e#525#526#0" expanded="true" />
             <element signature="e#553#554#0" expanded="true" />
-            <element signature="e#2327#2328#0" expanded="true" />
-            <element signature="e#2359#2360#0" expanded="true" />
-            <element signature="e#2417#2418#0" expanded="true" />
-            <element signature="e#2456#2457#0" expanded="true" />
+            <element signature="e#2351#2352#0" expanded="true" />
+            <element signature="e#2383#2384#0" expanded="true" />
+            <element signature="e#2441#2442#0" expanded="true" />
+            <element signature="e#2480#2481#0" expanded="true" />
           </folding>
         </state>
       </provider>
