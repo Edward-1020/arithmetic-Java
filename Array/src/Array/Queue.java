@@ -1,3 +1,5 @@
+package Array;
+
 public interface Queue<E> {
     int getSize();
     boolean isEmpty();

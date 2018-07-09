@@ -1,3 +1,5 @@
+package Array;
+
 import java.util.Random;
 
 public class Main {
@@ -25,10 +27,10 @@ public class Main {
 
         ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
         double time1 = testQueue(arrayQueue, opCount);
-        System.out.println("ArrayQueue, time:" + time1 + "s");
+        System.out.println("Array.ArrayQueue, time:" + time1 + "s");
 
         LoopQueue<Integer> loopQueue = new LoopQueue<>();
         double time2 = testQueue(loopQueue, opCount);
-        System.out.println("ArrayQueue, time:" + time2 + "s");
+        System.out.println("Array.ArrayQueue, time:" + time2 + "s");
     }
 }

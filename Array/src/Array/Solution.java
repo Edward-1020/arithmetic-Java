@@ -1,3 +1,5 @@
+package Array;
+
 public class Solution {
     public boolean isValid(String s) {
         ArrayStack<Character> stack = new ArrayStack<>();

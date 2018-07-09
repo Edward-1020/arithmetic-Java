@@ -1,3 +1,5 @@
+package Array;
+
 public class LoopQueue<E> implements Queue<E> {
     private E[] data;
     private int front, tail;
@@ -57,7 +59,7 @@ public class LoopQueue<E> implements Queue<E> {
     @Override
     public E getFront () {
         if (isEmpty())
-            throw  new IllegalArgumentException("Queue is empty");
+            throw  new IllegalArgumentException("Array.Queue is empty");
         return data[front];
     }
 
