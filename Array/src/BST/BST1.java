@@ -50,4 +50,45 @@ public class BST1<E extends Comparable<E>> {
 
         return node;
     }
+
+    // 以node为根的二分搜索树中是否包含元素e，递归算法
+    public boolean contains (E e) {
+        return contains(root, e);
+    }
+
+    private boolean contains (Node node, E e) {
+        if (node == null) {
+            return false;
+        }
+
+        if (e.compareTo(node.e) == 0) {
+            return true;
+        } else if (e.compareTo(node.e) < 0) {
+            return contains(node.left, e);
+        } else {
+            return contains(node.right, e);
+        }
+    }
+
+    //  二分搜索树的前序遍历
+    public void preOrder () {
+        preOrder(root);
+    }
+
+    private void preOrder (Node node) {
+        if (node == null)
+            return;
+
+        System.out.println(node.e);
+        preOrder(node.left);
+        preOrder(node.right);
+    }
+
+    public static void main (String[] args) {
+        BST1<Integer> bst = new BST1<Integer>();
+        int[] nums = {5, 3, 6, 8, 4, 2};
+        for(int num: nums)
+            bst.add(num);
+        bst.preOrder();
+    }
 }
