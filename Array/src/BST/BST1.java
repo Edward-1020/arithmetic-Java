@@ -226,6 +226,51 @@ public class BST1<E extends Comparable<E>> {
         return node;
     }
 
+    //  从搜索树删除元素为e的节点
+    public void remove (E e) {
+        root = remove(root, e);
+    }
+
+    //  删除以node为根的二分搜索树中值为e的节点，递归算法
+    //  返回删除节点后新的二分搜索树的根
+    private Node remove (Node node, E e) {
+        if (node == null)
+            return null;
+
+        if (e.compareTo(node.e) < 0) {
+            node.left = remove(node.left, e);
+            return node;
+        } else if (e.compareTo(node.e) > 0) {
+            node.left = remove(node.right, e);
+            return node;
+            // e = node.e
+        } else {
+            if (node.left == null) {
+                Node rightNode = node.right;
+                node.right = null;
+                size --;
+                return rightNode;
+            }
+
+            if (node.right == null) {
+                Node leftNode = node.left;
+                node.left = null;
+                size --;
+                return leftNode;
+            }
+
+            Node successor = minimum(node.right);
+            //  removeMin中size--了，但是successor指着min，所以白减了
+            successor.right = removeMin(node.right);
+            successor.left = node.left;
+
+            //  此时node被删除了,此时size--，与上面抵消了
+            node.left = node.right = null;
+
+            return successor;
+        }
+    }
+
     //  前序遍历打印二分搜索树
     @Override
     public String toString () {
