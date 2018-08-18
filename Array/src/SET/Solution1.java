@@ -1,7 +1,7 @@
 import java.util.TreeSet;
 import java.util.ArrayList;
 
-class Solution {
+class Solution1 {
     public int[] intersection(int[] nums1, int[] nums2) {
         TreeSet<Integer> set = new TreeSet<>();
         for (int num: nums1)
