@@ -15,6 +15,13 @@ public class Array<E> {
         this(10);
     }
 
+    public Array (E[] arr) {
+        data = (E[])new Object[arr.length];
+        for (int i = 0; i < arr.length; i++)
+            data[i] = arr[i];
+        size = arr.length;
+    }
+
     //  获取元素个数
     public int getSize() {
         return size;
@@ -55,7 +62,7 @@ public class Array<E> {
         size ++;
     }
 
-    E get(int index) {
+    public E get(int index) {
         if (index < 0 || index >= size)
             throw new IllegalArgumentException("Get failed. Index is illegal");
         return data[index];
@@ -69,7 +76,7 @@ public class Array<E> {
         return get(0);
     }
 
-    void Set(int index, E e) {
+    public void set(int index, E e) {
         if (index < 0 || index >= size)
             throw new IllegalArgumentException("Get failed. Index is illegal");
         data[index] = e;
@@ -127,6 +134,16 @@ public class Array<E> {
         int index = find(e);
         if (index != -1)
             remove(index);
+    }
+
+    public void swap (int i , int j) {
+        if (i < 0 || i >= size || j < 0 || j >= size) {
+            throw new IllegalArgumentException("Index is illegal.");
+        }
+
+        E t = data[i];
+        data[i] = data[j];
+        data[j] = t;
     }
 
     @Override
