@@ -30,6 +30,7 @@ public class UnionFind2 implements UnionFind {
     }
 
     //  查看元素p和元素q是否所属于一个集合
+    //  是否属于一个集合的判断标准是，其所属树的根节点是否相同
     @Override
     public boolean isConnected (int p, int q) {
         return find(p) == find(q);
