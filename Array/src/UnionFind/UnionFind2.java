@@ -1,4 +1,4 @@
- //  第一版
+ //  第二版
  
 public class UnionFind2 implements UnionFind {
     private int[] parent;
@@ -34,5 +34,19 @@ public class UnionFind2 implements UnionFind {
     @Override
     public boolean isConnected (int p, int q) {
         return find(p) == find(q);
+    }
+
+    //  合并元素p和元素q所属的集合
+    //  O(h)复杂度，h为树的高度
+    @Override
+    public void unionElements (int p, int q) {
+        int pRoot = find(p);
+        int qRoot = find(q);
+
+        if (pRoot == qRoot) {
+            return;
+        }
+
+        parent[pRoot] = qRoot;
     }
 }

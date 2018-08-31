@@ -32,7 +32,7 @@ public class UnionFind1 implements UnionFind {
     }
 
     //  合并元素p和元素q所属的集合
-    //  O(h)复杂度，h为树的高度
+    //  时间复杂度为O(n)
     @Override
     public void unionElements (int p, int q) {
         int pID = find(p);
@@ -46,19 +46,5 @@ public class UnionFind1 implements UnionFind {
             if (id[i] = pID)
                 id[i] = qID;
         }
-    }
-
-    //  合并元素p和元素q所属的集合
-    //  O(h)复杂度，h为树的高度
-    @Override
-    public void unionElements (int p, int q) {
-        int pRoot = find(p);
-        int qRoot = find(q);
-
-        if (pRoot == qRoot) {
-            return;
-        }
-
-        parent[pRoot] = qRoot;
     }
 }
