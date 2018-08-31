@@ -30,6 +30,9 @@ public class Main {
         System.out.println("UnionFind1:" + testUF(uf1, m) + " s");
 
         UnionFind2 uf2 = new UnionFind2(size);
-        System.out.println("UnionFind2:" + testUF(uf2, m) + " s");        
+        System.out.println("UnionFind2:" + testUF(uf2, m) + " s"); 
+
+        UnionFind3 uf3 = new UnionFind3(size);
+        System.out.println("UnionFind3:" + testUF(uf3, m) + " s");        
     }
 }

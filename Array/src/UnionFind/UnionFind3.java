@@ -1,14 +1,19 @@
  //  第二版
  
-public class UnionFind2 implements UnionFind {
+ public class UnionFind3 implements UnionFind {
     private int[] parent;
+    //  sz[i]表示以i为根的集合中元素个数
+    private int[] sz;
 
-    public UnionFind2 (int size) {
+    public UnionFind3 (int size) {
         parent = new int[size];
+        sz = new int[size];
 
         //  每个节点都是独立的树
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++) {
             parent[i] = i;
+            sz[i] = 1;
+        }
     }
 
     @Override
@@ -49,6 +54,12 @@ public class UnionFind2 implements UnionFind {
 
         //  在合并的过程中，简单的将树的根节点指向另一颗树
         //  增加了树的深度，使得find操作的时间复杂度增加
-        parent[pRoot] = qRoot;
+        if (sz[pRoot] < sz[qRoot]) {
+            parent[pRoot] = qRoot;
+            sz[qRoot] += sz[pRoot];
+        } else {
+            parent[qRoot] = pRoot;
+            sz[pRoot] += sz[qRoot];            
+        }
     }
 }
