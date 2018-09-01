@@ -1,19 +1,17 @@
 package UnionFind;
-  //  第二版
- 
- public class UnionFind3 implements UnionFind {
-    private int[] parent;
-    //  sz[i]表示以i为根的集合中元素个数
-    private int[] sz;
 
-    public UnionFind3 (int size) {
+public class UnionFind6 implements UnionFind{
+    private int[] parent;
+    private int[] rank;
+
+    public UnionFind6 (int size) {
         parent = new int[size];
-        sz = new int[size];
+        rank = new int[size];
 
         //  每个节点都是独立的树
         for (int i = 0; i < size; i++) {
             parent[i] = i;
-            sz[i] = 1;
+            rank[i] = 1;
         }
     }
 
@@ -24,15 +22,17 @@ package UnionFind;
 
     //  查找过程，查找元素p所对应的集合编号
     //  O(h)复杂度，h为树的高度
+    //  利用递归，优化路径压缩
     private int find (int p) {
         if (p < 0 && p >= parent.length)
             throw new IllegalArgumentException("p is out of bound");
 
-        while (p != parent[p]) {
-            p = parent[p];
+        //  利用find函数返回的是p节点的根节点
+        if (p != parent[p]) {
+            parent[p] = find(parent[p]);
         }
 
-        return p;
+        return parent[p];
     }
 
     //  查看元素p和元素q是否所属于一个集合
@@ -44,6 +44,7 @@ package UnionFind;
 
     //  合并元素p和元素q所属的集合
     //  O(h)复杂度，h为树的高度
+    //  根据两个元素所在树的rank不同判断合并方向，将rank低的集合合并到rank高的集合上
     @Override
     public void unionElements (int p, int q) {
         int pRoot = find(p);
@@ -55,12 +56,13 @@ package UnionFind;
 
         //  在合并的过程中，简单的将树的根节点指向另一颗树
         //  增加了树的深度，使得find操作的时间复杂度增加
-        if (sz[pRoot] < sz[qRoot]) {
+        if (rank[pRoot] < rank[qRoot]) {
             parent[pRoot] = qRoot;
-            sz[qRoot] += sz[pRoot];
+        } else if (rank[qRoot] < rank[pRoot]){
+            parent[qRoot] = pRoot;
         } else {
             parent[qRoot] = pRoot;
-            sz[pRoot] += sz[qRoot];            
+            rank[pRoot] += 1;
         }
     }
 }

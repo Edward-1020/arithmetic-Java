@@ -1,19 +1,18 @@
 package UnionFind;
-  //  第二版
- 
- public class UnionFind3 implements UnionFind {
+
+public class UnionFind4 implements UnionFind{
     private int[] parent;
     //  sz[i]表示以i为根的集合中元素个数
-    private int[] sz;
+    private int[] rank;
 
-    public UnionFind3 (int size) {
+    public UnionFind4 (int size) {
         parent = new int[size];
-        sz = new int[size];
+        rank = new int[size];
 
         //  每个节点都是独立的树
         for (int i = 0; i < size; i++) {
             parent[i] = i;
-            sz[i] = 1;
+            rank[i] = 1;
         }
     }
 
@@ -44,6 +43,7 @@ package UnionFind;
 
     //  合并元素p和元素q所属的集合
     //  O(h)复杂度，h为树的高度
+    //  根据两个元素所在树的rank不同判断合并方向，将rank低的集合合并到rank高的集合上
     @Override
     public void unionElements (int p, int q) {
         int pRoot = find(p);
@@ -55,12 +55,13 @@ package UnionFind;
 
         //  在合并的过程中，简单的将树的根节点指向另一颗树
         //  增加了树的深度，使得find操作的时间复杂度增加
-        if (sz[pRoot] < sz[qRoot]) {
+        if (rank[pRoot] < rank[qRoot]) {
             parent[pRoot] = qRoot;
-            sz[qRoot] += sz[pRoot];
+        } else if (rank[qRoot] < rank[pRoot]){
+            parent[qRoot] = pRoot;
         } else {
             parent[qRoot] = pRoot;
-            sz[pRoot] += sz[qRoot];            
+            rank[pRoot] += 1;
         }
     }
 }

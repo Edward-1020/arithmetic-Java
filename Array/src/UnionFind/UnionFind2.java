@@ -1,4 +1,6 @@
- //  第二版
+package UnionFind;
+
+//  第二版
  
 public class UnionFind2 implements UnionFind {
     private int[] parent;

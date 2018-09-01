@@ -1,3 +1,5 @@
+package UnionFind;
+
 public interface UnionFind {
     int getSize();
     boolean isConnected(int p, int q);

@@ -1,3 +1,5 @@
+package UnionFind;
+
 //  第一版
  
 public class UnionFind1 implements UnionFind {
@@ -21,7 +23,7 @@ public class UnionFind1 implements UnionFind {
         if (p < 0 && p >= id.length)
             throw new IllegalArgumentException("p is out of bound");
 
-        return id[p]
+        return id[p];
     }
 
     //  查看元素p和元素q是否所属一个集合
@@ -38,12 +40,12 @@ public class UnionFind1 implements UnionFind {
         int pID = find(p);
         int qID = find(q);
 
-        if  (pId == qID) {
+        if  (pID == qID) {
             return;
         }
 
         for (int i = 0; i < id.length; i++) {
-            if (id[i] = pID)
+            if (id[i] == pID)
                 id[i] = qID;
         }
     }

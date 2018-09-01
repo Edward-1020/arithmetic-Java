@@ -1,3 +1,5 @@
+package SegmentTree;
+
 // 给定一个数组，求出数组从索引i到索引j( i<= k <= j)的总和。其实i和j之间的数值不可变
 // - 题干
 // ```
@@ -18,7 +20,7 @@ class NumArray {
             for (int i = 0; i < nums.length; i++) {
                 data[i] = nums[i];
             }
-            segmentTree = new SegmentTree<>(data, (a, b) -> a + b);
+            segmentTree = new SegmentTree<Integer>(data, (a, b) -> a + b);
         }
     }
 
