@@ -116,6 +116,11 @@ public class AVLTree<K extends Comparable<K>, V>{
             System.out.println("unbalanced:" + balanceFactor);
         }
 
+        //  对于每一个节点，都维护平衡性，维护完成后，返回给上一层
+        //  当前节点平衡因子大于1，不平衡。此时，左子树的平衡因子 》= 0, 及左子树高度大于右子树高度
+        //  右旋转
+        if (balanceFactor > 1 && getBalanceFactor(node.left) >= 0)
+
         return node;
     }
 
