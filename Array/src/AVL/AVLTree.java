@@ -152,10 +152,26 @@ public class AVLTree<K extends Comparable<K>, V>{
         //  对于每一个节点，都维护平衡性，维护完成后，返回给上一层
         //  当前节点平衡因子大于1，不平衡。此时，左子树的平衡因子 》= 0, 及左子树高度大于右子树高度
         //  右旋转
+        //  LL
         if (balanceFactor > 1 && getBalanceFactor(node.left) >= 0)
             return rightRotate(node);
 
+        //  RR
         if (balanceFactor < -1 && getBalanceFactor(node.right) <= 0) {
+            return leftRotate(node);
+        }
+
+        //  LR
+        //  左子树比右子树高，且高度差大于1
+        //  不平衡因子小于0，即对于左孩子，其右孩子比其左孩子要高
+        if (balanceFactor > 1 && getBalanceFactor(node.left) < 0) {
+            node.left = leftRotate(node.left);
+            return rightRotate(node);
+        }
+
+        //  RL
+        if (balanceFactor < -1 && getBalanceFactor(node.right) > 0) {
+            node.right = rightRotate(node.right);
             return leftRotate(node);
         }
 
@@ -192,6 +208,96 @@ public class AVLTree<K extends Comparable<K>, V>{
         node.value = newValue;
     }
 
+    //  从搜索树删除元素为e的节点
+    public V remove (K key) {
+        Node node = getNode(root, key);
+
+        if (node != null) {
+            root = remove(root, key);
+            return node.value;
+        }
+        return null;
+    }
+
+    private Node remove (Node node, K key) {
+        if (node == null)
+            return null;
+
+        Node retNode;
+
+        if (key.compareTo(node.key) < 0) {
+            node.left = remove(node.left, key);
+            retNode = node;
+        } else if (key.compareTo(node.key) > 0) {
+            node.right = remove(node.right, key);
+            retNode = node;
+        } else {
+            if (node.left == null) {
+                Node rightNode = node.right;
+                node.right = null;
+                size --;
+                retNode = rightNode;
+            } else if (node.right == null) {
+                Node leftNode = node.left;
+                node.left = null;
+                size --;
+                retNode = leftNode;
+            } else {
+                Node successor = minimum(node.right);
+                //  successor.right = removeMin(node.right); 并未维护AVL平衡性
+                //  改为下句
+                successor.right = remove(node.right, successor.key);
+                successor.left = node.left;
+
+                //  此时node被删除了,此时size--，与上面抵消了
+                node.left = node.right = null;
+
+                retNode = successor;
+            }
+        }
+
+        if (retNode == null) {
+            return null;
+        }
+
+        //  更新height
+        retNode.height = 1 + Math.max(getHeight(retNode.left), getHeight(retNode.right));
+
+        //  计算平衡因子
+        int balanceFactor = getBalanceFactor(retNode);
+        if (Math.abs(balanceFactor) > 1) {
+            System.out.println("unbalanced:" + balanceFactor);
+        }
+
+        //  对于每一个节点，都维护平衡性，维护完成后，返回给上一层
+        //  当前节点平衡因子大于1，不平衡。此时，左子树的平衡因子 》= 0, 及左子树高度大于右子树高度
+        //  右旋转
+        //  LL
+        if (balanceFactor > 1 && getBalanceFactor(retNode.left) >= 0)
+            return rightRotate(retNode);
+
+        //  RR
+        if (balanceFactor < -1 && getBalanceFactor(retNode.right) <= 0) {
+            return leftRotate(retNode);
+        }
+
+        //  LR
+        //  左子树比右子树高，且高度差大于1
+        //  不平衡因子小于0，即对于左孩子，其右孩子比其左孩子要高
+        if (balanceFactor > 1 && getBalanceFactor(retNode.left) < 0) {
+            retNode.left = leftRotate(retNode.left);
+            return rightRotate(retNode);
+        }
+
+        //  RL
+        if (balanceFactor < -1 && getBalanceFactor(retNode.right) > 0) {
+            retNode.right = rightRotate(retNode.right);
+            return leftRotate(retNode);
+        }
+
+        return retNode;
+    }
+
     //  返回以node为根的二分搜索树的最小值所在的节点
     private Node minimum (Node node) {
         if (node.left == null)
@@ -199,61 +305,4 @@ public class AVLTree<K extends Comparable<K>, V>{
         return minimum(node.left);
     }
 
-    //  删除掉以node为根的二分搜索树的最小节点
-    //  返回删除节点后新的二分搜索树的根
-    private Node removeMin (Node node) {
-        if (node.left == null) {
-            Node rightNode = node.right;
-            node.right = null;
-            size --;
-            return rightNode;
-        }
-
-        node.left = removeMin(node.left);
-        return node;
-    }
-
-    public V remove (K key) {
-        Node node = getNode(root, key);
-        if (node != null) {
-            root = remove(root, key);
-            return node.value;
-        }
-
-        return null;
-    }
-
-    private Node remove (Node node, K key) {
-        if (node == null)
-            return null;
-        if (key.compareTo(node.key) < 0) {
-            node.left = remove(node.left, key);
-            return node;
-        } else if (key.compareTo(node.key) > 0) {
-            node.right = remove(node.right, key);
-            return node;
-        } else {
-            if (node.left == null) {
-                Node rightNode = node.right;
-                node.right = null;
-                size--;
-                return rightNode;
-            }
-
-            if (node.right == null) {
-                Node leftNode = node.left;
-                node.left = null;
-                size--;
-                return leftNode;
-            }
-
-            Node successor = minimum(node.right);
-            successor.right = removeMin(node.right);
-            successor.left = node.left;
-
-            node.left = node.right = null;
-
-            return successor;
-        }
-    }
 }
